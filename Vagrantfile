@@ -68,8 +68,7 @@ Vagrant.configure(2) do |config|
      apt-get update
      apt-get install -y subversion make gcc g++ libncurses5-dev libghc-zlib-dev libreadline-dev libssl-dev gawk bzip2 patch xz-utils git unzip
    SHELL
-   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-     cd /vagrant
+   config.vm.provision "shell", privileged: true, inline: <<-SHELL
      if [ -d openwrt ];then
       cd openwrt
       git pull --ff-only
@@ -77,6 +76,5 @@ Vagrant.configure(2) do |config|
       git clone http://git.openwrt.org/15.05/openwrt.git
       cd openwrt
      fi
-     ln -sf /vagrant/openwrt openwrt
    SHELL
 end
